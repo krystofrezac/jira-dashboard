@@ -40,6 +40,7 @@ module.exports = {
       { blankLine: 'always', prev: '*', next: 'export' }, // empty line before export
     ],
     'newline-before-return': 'error',
+    'no-console': 'error',
 
     // typescript
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
