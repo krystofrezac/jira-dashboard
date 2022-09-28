@@ -9,7 +9,7 @@ const HomePage: NextPage = () => {
   const { data } = trpc.useQuery(
     [
       'jira.listMyIssues',
-      { token: auth?.authToken ?? '', jiraUrl: auth?.url ?? '' },
+      { authToken: auth?.authToken ?? '', jiraUrl: auth?.url ?? '' },
     ],
     {
       enabled: !!auth,
