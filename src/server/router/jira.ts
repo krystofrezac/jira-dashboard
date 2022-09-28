@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { createRouter } from './context';
 
-const exampleRouter = createRouter().query('hello', {
+const jiraRouter = createRouter().query('hello', {
   input: z
     .object({
       text: z.string().nullish(),
@@ -13,4 +13,4 @@ const exampleRouter = createRouter().query('hello', {
   }),
 });
 
-export default exampleRouter;
+export default jiraRouter;
