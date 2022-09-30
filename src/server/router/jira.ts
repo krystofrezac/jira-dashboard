@@ -19,7 +19,9 @@ const exampleRouter = createRouter().query('listMyIssues', {
       .method('get')
       .create();
 
-    const result = await search({ jql: 'assignee = currentUser()' });
+    const result = await search({
+      jql: 'assignee=currentUser() and type=Sub-task',
+    });
 
     return result.data;
   },

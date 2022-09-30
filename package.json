@@ -9,7 +9,7 @@
     "lint": "eslint --ext .js,.ts,.tsx .",
     "lint-fix": "eslint --fix --ext .js,.ts,.tsx .",
     "ts-verify": "tsc",
-    "generate:api": "openapi-typescript https://developer.atlassian.com/cloud/jira/platform/swagger-v3.v3.json --output src/server/jiraClient/generatedTypes.ts",
+    "generate:api": "openapi-typescript https://developer.atlassian.com/cloud/jira/platform/swagger-v3.v3.json --output src/generated/jiraApiTypes.ts",
     "prepare": "husky install"
   },
   "lint-staged": {

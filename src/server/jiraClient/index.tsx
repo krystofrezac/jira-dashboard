@@ -1,6 +1,6 @@
 import { Fetcher } from 'openapi-typescript-fetch';
 
-import { paths } from './generatedTypes';
+import { paths } from '../../generated/jiraApiTypes';
 
 interface Config {
   baseUrl: string;

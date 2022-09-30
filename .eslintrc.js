@@ -39,7 +39,6 @@ module.exports = {
       'error',
       { blankLine: 'always', prev: '*', next: 'export' }, // empty line before export
     ],
-    'newline-before-return': 'error',
     'no-console': 'error',
 
     // typescript
