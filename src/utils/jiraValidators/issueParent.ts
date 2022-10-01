@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 export const parentValidator = z.object({
   id: z.string(),
+  key: z.string(),
   fields: z.object({
     issuetype: z.object({ iconUrl: z.string() }),
     summary: z.string(),

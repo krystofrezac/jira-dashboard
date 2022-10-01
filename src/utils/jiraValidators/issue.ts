@@ -4,6 +4,7 @@ import { parentValidator } from './issueParent';
 
 const issueValidator = z.object({
   id: z.string(),
+  key: z.string(),
   fields: z.object({
     parent: parentValidator.optional(),
     issuetype: z.object({ iconUrl: z.string() }),

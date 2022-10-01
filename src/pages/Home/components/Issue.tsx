@@ -1,15 +1,26 @@
 import { FC } from 'react';
 
+import useLocalStorage from '../../../hooks/useLocalStorage';
+import { LocalStorageKey } from '../../../hooks/useLocalStorage/types';
+
 interface IssueProps {
-  name: string;
+  jiraKey: string;
+  summary: string;
   issueTypeIconUrl: string;
 }
 
-const Issue: FC<IssueProps> = ({ name, issueTypeIconUrl }) => {
+const Issue: FC<IssueProps> = ({ jiraKey, summary, issueTypeIconUrl }) => {
+  const [auth] = useLocalStorage(LocalStorageKey.auth);
   return (
     <div>
-      <img src={issueTypeIconUrl} />
-      <span>{name}</span>
+      <a
+        href={`${auth?.url}/browse/${jiraKey}`}
+        target='_blank'
+        rel='noreferrer'
+      >
+        <img src={issueTypeIconUrl} />
+        <span>{summary}</span>
+      </a>
     </div>
   );
 };

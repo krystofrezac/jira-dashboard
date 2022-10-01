@@ -16,14 +16,16 @@ const mapIssues = (issues: GroupedIssues): ReactNode[] => {
     mappedIssues.push(
       <Fragment key={parent.id}>
         <Issue
-          name={(parent.fields?.summary as string | undefined) ?? '?'}
+          jiraKey={parent.key}
+          summary={parent.fields.summary}
           issueTypeIconUrl={parent.fields.issuetype.iconUrl}
         />
         <div style={{ paddingLeft: 20 }}>
           {issues.map(issue => (
             <Issue
               key={issue.id}
-              name={issue.fields.summary}
+              jiraKey={issue.key}
+              summary={issue.fields.summary}
               issueTypeIconUrl={issue.fields.issuetype.iconUrl}
             />
           ))}
