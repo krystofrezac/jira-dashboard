@@ -1,8 +1,10 @@
 import { ReactNode } from 'react';
 
+import { Loading } from '@nextui-org/react';
 import { NextPage } from 'next';
 
 import Column from '../../components/elements/flex/Column';
+import Row from '../../components/elements/flex/Row';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { LocalStorageKey } from '../../hooks/useLocalStorage/types';
 import { trpc } from '../../utils/trpc';
@@ -25,11 +27,10 @@ const mapIssues = (issues: GroupedIssues): ReactNode[] => {
 
 const HomePage: NextPage = () => {
   const [auth] = useLocalStorage(LocalStorageKey.auth);
-  const [statusFilter, setStatusFilter] = useLocalStorage(
-    LocalStorageKey.statusFilter,
-  );
+  const [statusFilter, setStatusFilter, { synced: statusFilterSynced }] =
+    useLocalStorage(LocalStorageKey.statusFilter);
 
-  const { data } = trpc.useQuery(
+  const { data, isSuccess, isLoading } = trpc.useQuery(
     [
       'jira.listMyIssues',
       {
@@ -39,7 +40,7 @@ const HomePage: NextPage = () => {
       },
     ],
     {
-      enabled: !!auth,
+      enabled: !!auth && statusFilterSynced,
     },
   );
 
@@ -56,7 +57,12 @@ const HomePage: NextPage = () => {
         selectedStatuses={statusFilter?.selectedStatuses ?? []}
         onChange={handleStatusFilterChange}
       />
-      {mappedIssues}
+      {isLoading && (
+        <Row centerHorizontally withSpacingTop>
+          <Loading />
+        </Row>
+      )}
+      {isSuccess && mappedIssues}
     </Column>
   );
 };
