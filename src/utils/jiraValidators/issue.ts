@@ -9,6 +9,9 @@ const issueValidator = z.object({
     parent: parentValidator.optional(),
     issuetype: z.object({ iconUrl: z.string() }),
     summary: z.string(),
+    status: z.object({
+      name: z.string(),
+    }),
   }),
 });
 

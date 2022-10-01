@@ -35,15 +35,10 @@ module.exports = {
     'import/prefer-default-export': 'error',
     'import/no-anonymous-default-export': 'error',
     'prefer-arrow-functions/prefer-arrow-functions': 'error',
-    'padding-line-between-statements': [
-      'error',
-      { blankLine: 'always', prev: '*', next: 'export' }, // empty line before export
-    ],
     'no-console': 'error',
 
     // typescript
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-    '@typescript-eslint/explicit-function-return-type': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
 
     // React

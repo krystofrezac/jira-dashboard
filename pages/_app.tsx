@@ -1,4 +1,5 @@
 // src/pages/_app.tsx
+import { NextUIProvider } from '@nextui-org/react';
 import { httpBatchLink } from '@trpc/client/links/httpBatchLink';
 import { loggerLink } from '@trpc/client/links/loggerLink';
 import { withTRPC } from '@trpc/next';
@@ -8,7 +9,11 @@ import superjson from 'superjson';
 import type { AppRouter } from '../src/server/router';
 
 const MyApp: AppType = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
+  return (
+    <NextUIProvider>
+      <Component {...pageProps} />
+    </NextUIProvider>
+  );
 };
 
 const getBaseUrl = (): string => {

@@ -6,6 +6,9 @@ export const parentValidator = z.object({
   fields: z.object({
     issuetype: z.object({ iconUrl: z.string() }),
     summary: z.string(),
+    status: z.object({
+      name: z.string(),
+    }),
   }),
 });
 

@@ -1,12 +1,14 @@
-import { Fragment, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
+import { Card } from '@nextui-org/react';
 import { NextPage } from 'next';
 
+import Column from '../../components/elements/flex/Column';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { LocalStorageKey } from '../../hooks/useLocalStorage/types';
 import { trpc } from '../../utils/trpc';
 
-import Issue from './components/Issue';
+import IssueGroup from './components/IssueGroup';
 import groupIssues, { GroupedIssues } from './utils/groupIssues';
 
 const mapIssues = (issues: GroupedIssues): ReactNode[] => {
@@ -14,23 +16,7 @@ const mapIssues = (issues: GroupedIssues): ReactNode[] => {
 
   issues.forEach(({ parent, issues }) => {
     mappedIssues.push(
-      <Fragment key={parent.id}>
-        <Issue
-          jiraKey={parent.key}
-          summary={parent.fields.summary}
-          issueTypeIconUrl={parent.fields.issuetype.iconUrl}
-        />
-        <div style={{ paddingLeft: 20 }}>
-          {issues.map(issue => (
-            <Issue
-              key={issue.id}
-              jiraKey={issue.key}
-              summary={issue.fields.summary}
-              issueTypeIconUrl={issue.fields.issuetype.iconUrl}
-            />
-          ))}
-        </div>
-      </Fragment>,
+      <IssueGroup key={parent.id} parent={parent} issues={issues} />,
     );
   });
 
@@ -52,7 +38,11 @@ const HomePage: NextPage = () => {
   const groupedIssues = groupIssues(data?.issues ?? []);
   const mappedIssues = mapIssues(groupedIssues);
 
-  return <>{mappedIssues}</>;
+  return (
+    <Column gap='md' withSpacing='md'>
+      {mappedIssues}
+    </Column>
+  );
 };
 
 export default HomePage;
