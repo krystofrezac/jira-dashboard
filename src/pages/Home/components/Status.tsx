@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Badge, StyledBadge, VariantProps } from '@nextui-org/react';
+import { Badge } from '@nextui-org/react';
 
 interface StatusProps {
   name: string;
@@ -17,11 +17,10 @@ const Status: FC<StatusProps> = ({ name }) => {
     | 'error'
     | undefined
   > = {
-    ToDo: 'default',
     InProgress: 'primary',
     CodeReview: 'warning',
     Done: 'success',
-    Open: 'secondary',
+    'To Do': 'secondary',
   };
 
   return (

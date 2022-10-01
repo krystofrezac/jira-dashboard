@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Badge, Text } from '@nextui-org/react';
+import { Text } from '@nextui-org/react';
 
 import Row from '../../../components/elements/flex/Row';
 import useLocalStorage from '../../../hooks/useLocalStorage';
@@ -13,6 +13,7 @@ interface IssueProps {
   summary: string;
   issueTypeIconUrl: string;
   status: string;
+  isParent?: boolean;
 }
 
 const Issue: FC<IssueProps> = ({
@@ -20,13 +21,15 @@ const Issue: FC<IssueProps> = ({
   summary,
   issueTypeIconUrl,
   status,
+  isParent,
 }) => {
   const [auth] = useLocalStorage(LocalStorageKey.auth);
   return (
     <a href={`${auth?.url}/browse/${jiraKey}`} target='_blank' rel='noreferrer'>
       <Row gap='md' centerVertically>
-        <img src={issueTypeIconUrl} />
-        <Text>{summary}</Text>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={issueTypeIconUrl} alt='status' />
+        <Text b={isParent}>{summary}</Text>
         <Status name={status} />
       </Row>
     </a>

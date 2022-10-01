@@ -15,13 +15,14 @@ interface IssueGroupProps {
 
 const IssueGroup: FC<IssueGroupProps> = ({ parent, issues }) => {
   return (
-    <Card >
+    <Card>
       <Card.Body>
         <Issue
           jiraKey={parent.key}
           summary={parent.fields.summary}
           issueTypeIconUrl={parent.fields.issuetype.iconUrl}
           status={parent.fields.status.name}
+          isParent
         />
         <Column withSpacingLeft='md'>
           {issues.map(issue => (
