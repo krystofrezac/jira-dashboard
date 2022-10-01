@@ -30,7 +30,7 @@ const Issue: FC<IssueProps> = ({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={issueTypeIconUrl} alt='status' />
         <Text b={isParent}>{summary}</Text>
-        <Status name={status} />
+        <Status name={status} size='sm' />
       </Row>
     </a>
   );

@@ -1,6 +1,10 @@
-import { CSS } from '@nextui-org/react';
-
 export const gapVariants = {
+  xs: {
+    gap: '$xs',
+  },
+  sm: {
+    gap: '$sm',
+  },
   md: {
     gap: '$md',
   },

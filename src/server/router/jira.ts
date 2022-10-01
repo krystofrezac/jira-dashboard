@@ -8,6 +8,7 @@ const exampleRouter = createRouter().query('listMyIssues', {
   input: z.object({
     authToken: z.string(),
     jiraUrl: z.string(),
+    statusFilter: z.string().array().optional(),
   }),
 
   resolve: async ({ input }) => {
@@ -19,8 +20,17 @@ const exampleRouter = createRouter().query('listMyIssues', {
       .method('get')
       .create();
 
+    const statusIn = input.statusFilter
+      ?.map(status => `"${status}"`)
+      .join(', ');
+    const statusJql = statusIn ? `and status in (${statusIn})` : undefined;
+
+    const searchJql = [
+      `assignee=currentUser() and type in (Sub-task)`,
+      statusJql,
+    ];
     const result = await search({
-      jql: 'assignee=currentUser() and type=Sub-task',
+      jql: searchJql.filter(item => !!item).join(' '),
     });
 
     return result.data;
