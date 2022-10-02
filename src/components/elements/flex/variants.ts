@@ -18,8 +18,10 @@ const getSpacingVariant = (
     | 'paddingTop'
     | 'paddingBottom',
 ) => ({
+  sm: { [spacingProperty]: '$sm' },
   true: { [spacingProperty]: '$md' },
   md: { [spacingProperty]: '$md' },
+  lg: { [spacingProperty]: '$lg' },
 });
 
 export const withSpacingVariants = getSpacingVariant('padding');

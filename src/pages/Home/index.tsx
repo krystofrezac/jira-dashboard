@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
 
-import { Loading } from '@nextui-org/react';
+import { Button, Loading } from '@nextui-org/react';
 import { NextPage } from 'next';
+import Link from 'next/link';
 
 import Column from '../../components/elements/flex/Column';
 import Row from '../../components/elements/flex/Row';
@@ -50,6 +51,17 @@ const HomePage: NextPage = () => {
 
   const groupedIssues = groupIssues(data?.issues ?? []);
   const mappedIssues = mapIssues(groupedIssues);
+
+  if (!auth)
+    return (
+      <Column centerHorizontally withSpacing>
+        <Link href='/login' passHref>
+          <a>
+            <Button auto>Log in</Button>
+          </a>
+        </Link>
+      </Column>
+    );
 
   return (
     <Column gap='md' withSpacing='md'>

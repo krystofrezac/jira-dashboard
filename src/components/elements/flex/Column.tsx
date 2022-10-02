@@ -11,6 +11,9 @@ const Column = styled('div', {
     centerVertically: {
       true: { justifyContent: 'center' },
     },
+    centerHorizontally: {
+      true: { alignItems: 'center' },
+    },
   },
 });
 
