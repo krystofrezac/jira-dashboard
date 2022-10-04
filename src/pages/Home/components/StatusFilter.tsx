@@ -4,7 +4,15 @@ import Row from '../../../components/elements/flex/Row';
 
 import Status from './Status';
 
-const statuses = ['Open', 'To Do', 'InProgress', 'CodeReview', 'Done', 'DEV'];
+const statuses = [
+  'Open',
+  'To Do',
+  'InProgress',
+  'CodeReview',
+  'Done',
+  'DEV',
+  'Blocked',
+];
 
 interface StatusFilterProps {
   selectedStatuses: string[];

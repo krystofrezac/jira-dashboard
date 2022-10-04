@@ -30,6 +30,7 @@ const Status: FC<StatusProps> = ({
     Done: 'success',
     DEV: 'success',
     'To Do': 'secondary',
+    Blocked: 'error',
   };
 
   return (
