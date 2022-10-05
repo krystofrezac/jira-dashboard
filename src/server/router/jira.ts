@@ -26,9 +26,10 @@ const exampleRouter = createRouter().query('listMyIssues', {
     const statusJql = statusIn ? `and status in (${statusIn})` : undefined;
 
     const searchJql = [
-      `assignee=currentUser() and type in (Sub-task)`,
+      `assignee=currentUser() and type in (Sub-task, Bug)`,
       statusJql,
     ];
+
     const result = await search({
       jql: searchJql.filter(item => !!item).join(' '),
     });

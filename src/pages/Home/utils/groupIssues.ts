@@ -17,7 +17,10 @@ const groupedIssues = (issues: Issues): GroupedIssues => {
     if (!issue) return;
 
     const parent = getIssueParent(issue.fields?.parent);
-    if (!parent) return;
+    if (!parent) {
+      groupedIssues.set(issue.id, { parent: issue, issues: [] });
+      return;
+    }
 
     const parentId = parent.id;
     if (typeof parentId !== 'string') return;
