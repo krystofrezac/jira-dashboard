@@ -25,14 +25,23 @@ const Issue: FC<IssueProps> = ({
 }) => {
   const [auth] = useLocalStorage(LocalStorageKey.auth);
   return (
-    <a href={`${auth?.url}/browse/${jiraKey}`} target='_blank' rel='noreferrer'>
-      <Row gap='md' centerVertically>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={issueTypeIconUrl} alt='status' />
-        <Text b={isParent}>{summary}</Text>
-        <Status name={status} size='sm' />
-      </Row>
-    </a>
+    <Row gap='md' centerVertically>
+      <a
+        href={`${auth?.url}/browse/${jiraKey}`}
+        target='_blank'
+        rel='noreferrer'
+      >
+        <Row gap='md'>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={issueTypeIconUrl} alt='status' />
+          <Row>
+            <Text b={isParent}>{summary}</Text>
+          </Row>
+          <Status name={status} size='sm' />
+        </Row>
+      </a>
+      <Text size='$xs'>{jiraKey}</Text>
+    </Row>
   );
 };
 
